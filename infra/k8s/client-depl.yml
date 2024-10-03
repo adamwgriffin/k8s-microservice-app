@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: adamwgriffin/my-nextjs-app-img:latest
+          image: adamwgriffin/my-nextjs-app-img
 ---
 apiVersion: v1
 kind: Service
