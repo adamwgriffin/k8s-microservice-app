@@ -35,6 +35,11 @@ a {
   text-decoration: none;
 }
 
+button {
+  padding: .5rem;
+  cursor: pointer;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
