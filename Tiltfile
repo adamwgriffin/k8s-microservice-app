@@ -26,7 +26,7 @@ docker_build(
   'adamwgriffin/my-nextjs-app-img',
   context='client',
   dockerfile='client/Dockerfile',
-  target='dev',
+  target='builder',
   entrypoint='yarn dev',
   live_update=[
     sync('./client', '/app')

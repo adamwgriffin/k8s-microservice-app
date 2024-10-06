@@ -10,18 +10,6 @@ WORKDIR /app
 COPY package.json yarn.lock* ./
 RUN yarn install --frozen-lockfile
 
-# https://medium.com/@elifront/best-next-js-docker-compose-hot-reload-production-ready-docker-setup-28a9125ba1dc
-# This "dev" stage allows us to have a minimal container for working in development by skipping the stages intended for
-# production where we build/run the app. We target this dev stage in our docker-compose file used for development.
-# Technically we could just target the "builder" stage instead but then we would have to wait for the project to create
-# a build that we wouldn't need in dev.
-FROM base AS dev
-
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-
-
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
