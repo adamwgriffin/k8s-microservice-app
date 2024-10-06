@@ -34,5 +34,3 @@ docker_build(
 )
 
 k8s_yaml('./infra/k8s/client-depl.yml')
-
-k8s_resource('client-depl', port_forwards=3000)
