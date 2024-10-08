@@ -14,10 +14,14 @@ spec:
     spec:
       containers:
         - name: client
-          image: adamwgriffin/my-nextjs-app-img
+          image: adamwgriffin/client
           env:
             - name: NEXT_TELEMETRY_DISABLED
               value: "1"
+            - name: SERVICE_BASE
+              value: "/api"
+            - name: NEXTAUTH_URL
+              value: "http://awesomere.dev"
 ---
 apiVersion: v1
 kind: Service
