@@ -12,11 +12,11 @@ app.get("/api/users/currentuser", async (req, res) => {
 });
 
 const connectToDB = async () => {
-  if (!process.env.DATABASE_URL) {
-    throw new Error('DATABASE_URL must be defined');
+  if (!process.env.AUTH_DATABASE_URL) {
+    throw new Error('AUTH_DATABASE_URL must be defined');
   }
   try {
-    await mongoose.connect(process.env.DATABASE_URL);
+    await mongoose.connect(process.env.AUTH_DATABASE_URL);
     console.log('Connected to MongoDb');
   } catch (err) {
     console.error(err);
