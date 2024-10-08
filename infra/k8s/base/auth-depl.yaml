@@ -15,12 +15,9 @@ spec:
       containers:
         - name: auth
           image: adamwgriffin/auth
-          env:
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: app-secret
-                  key: AUTH_DATABASE_URL
+          envFrom:
+            - secretRef:
+                name: auth-secret
 ---
 apiVersion: v1
 kind: Service
