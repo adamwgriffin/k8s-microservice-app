@@ -1,13 +1,17 @@
 'use client'
 
+import { useState } from 'react'
 import { FormEvent } from 'react'
 import styles from './page.module.css'
 
 export default function Home() {
+  const [user, setUser] = useState<{ name: string }>()
+
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault()
     const res = await fetch('/api/users/currentuser')
-    console.log(res)
+    const data = await res.json()
+    setUser(data)
   }
 
   return (
@@ -27,10 +31,9 @@ export default function Home() {
           <li>NEXT_PUBLIC_CURRENCY: {process.env.NEXT_PUBLIC_CURRENCY}</li>
         </ul>
         <form onSubmit={onSubmit}>
-          <button className='btn btn-primary'>
-            Test Endpoint
-          </button>
+          <button className='btn btn-primary'>Test Endpoint</button>
         </form>
+        <p>Current User: {user?.name}</p>
       </main>
     </div>
   )
