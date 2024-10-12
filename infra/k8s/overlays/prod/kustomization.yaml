@@ -18,7 +18,7 @@ configMapGenerator:
   - name: client-config
     behavior: merge
     envs:
-      - .env.client-config
+      - client-config.env
 
 secretGenerator:
   - name: client-secret

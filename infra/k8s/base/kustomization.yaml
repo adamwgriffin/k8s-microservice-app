@@ -9,7 +9,7 @@ resources:
 configMapGenerator:
   - name: client-config
     envs:
-      - .env.client-config
+      - client-config.env
 
 secretGenerator:
   - name: client-secret
