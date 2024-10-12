@@ -10,11 +10,3 @@ configMapGenerator:
   - name: client-config
     envs:
       - client-config.env
-
-secretGenerator:
-  - name: client-secret
-    envs:
-      - .env.client-secret
-  - name: auth-secret
-    envs:
-      - .env.auth-secret

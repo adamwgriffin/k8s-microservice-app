@@ -22,10 +22,8 @@ configMapGenerator:
 
 secretGenerator:
   - name: client-secret
-    behavior: merge
     envs:
       - .env.client-secret
   - name: auth-secret
-    behavior: merge
     envs:
       - .env.auth-secret
