@@ -6,14 +6,6 @@ resources:
 
 namespace: dev
 
-patches:
-  - target:
-      group: networking.k8s.io
-      version: v1
-      kind: Ingress
-      name: ingress-service
-    path: ingress-patch.yaml
-
 configMapGenerator:
   - name: client-config
     behavior: merge
