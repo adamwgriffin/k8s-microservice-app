@@ -1,4 +1,12 @@
-k8s_yaml(kustomize('./infra/k8s/base'))
+# Create a namespace for dev
+load(
+  "ext://namespace", 
+  "namespace_create",
+  "namespace_inject"
+)
+namespace_create('dev')
+
+k8s_yaml(kustomize('./infra/k8s/overlays/dev'))
 
 # This just gives the ingress-service object a name so it doesn't show up as "uncategorized" in the UI
 k8s_resource(
