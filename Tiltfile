@@ -14,10 +14,13 @@ k8s_resource(
   new_name='ingress-service'
 )
 
+k8s_resource('auth-mongo-depl', port_forwards=27017)
+
 docker_build(
   'adamwgriffin/auth',
   context='auth',
   dockerfile='auth/Dockerfile',
+  entrypoint='yarn dev',
   live_update=[
     sync('./auth', '/app')
   ]

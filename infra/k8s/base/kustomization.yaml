@@ -5,6 +5,7 @@ resources:
   - auth-depl.yaml
   - client-depl.yaml
   - ingress-srv.yaml
+  - auth-mongo-depl.yaml
 
 configMapGenerator:
   - name: client-config

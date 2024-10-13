@@ -16,6 +16,8 @@ spec:
         - name: auth
           image: adamwgriffin/auth
           envFrom:
+            - configMapRef:
+                name: auth-config
             - secretRef:
                 name: auth-secret
 ---

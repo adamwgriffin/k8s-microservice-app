@@ -7,6 +7,10 @@ resources:
 namespace: dev
 
 configMapGenerator:
+  - name: auth-config
+    behavior: create
+    envs:
+      - auth-config.env
   - name: client-config
     behavior: merge
     envs:
