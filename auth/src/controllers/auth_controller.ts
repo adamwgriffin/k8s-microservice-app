@@ -43,3 +43,12 @@ export const login = async (ctx) => {
   ctx.session = { jwt: userJwt }
   ctx.body = pick(user, ['_id', 'firstName', 'lastName', 'email'])
 }
+
+export const logout = async (ctx) => {
+  ctx.session = null
+  ctx.body = {}
+}
+
+export const currentUser = (ctx) => {
+  ctx.body = { currentUser: ctx.state.currentUser || null }
+}
