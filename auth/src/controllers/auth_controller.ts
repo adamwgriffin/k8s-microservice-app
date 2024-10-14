@@ -5,9 +5,9 @@ import pick from 'lodash/pick'
 export const register = async (ctx) => {
   const { firstName, lastName, email, password } = ctx.request.body
 
-  const existingUser = await User.findOne({ email })
-  ctx.assert(!existingUser, 400, 'Email in use.')
-  
+  const existingUser = await User.exists({ email })
+  ctx.assert(!existingUser, 400, 'Email already in use.')
+
   const user = await User.create({
     firstName,
     lastName,
