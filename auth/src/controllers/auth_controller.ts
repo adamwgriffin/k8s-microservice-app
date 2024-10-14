@@ -22,7 +22,7 @@ export const register = async (ctx) => {
     },
     process.env.JWT_SECRET
   )
-  ctx.body = pick(user, ['_id', 'username', 'firstName', 'lastName', 'email'])
+  ctx.body = pick(user, ['_id', 'firstName', 'lastName', 'email'])
   ctx.session = { jwt: userJwt }
   ctx.status = 201
 }
@@ -41,5 +41,5 @@ export const login = async (ctx) => {
     process.env.JWT_SECRET
   )
   ctx.session = { jwt: userJwt }
-  ctx.body = pick(user, ['_id', 'username', 'firstName', 'lastName', 'email'])
+  ctx.body = pick(user, ['_id', 'firstName', 'lastName', 'email'])
 }
