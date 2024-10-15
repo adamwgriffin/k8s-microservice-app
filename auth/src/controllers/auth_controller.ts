@@ -3,14 +3,12 @@ import jwt from 'jsonwebtoken'
 import pick from 'lodash/pick'
 
 export const register = async (ctx) => {
-  const { firstName, lastName, email, password } = ctx.request.body
+  const { email, password } = ctx.request.body
 
   const existingUser = await User.exists({ email })
   ctx.assert(!existingUser, 400, 'Email already in use.')
 
   const user = await User.create({
-    firstName,
-    lastName,
     email,
     password
   })
@@ -22,7 +20,7 @@ export const register = async (ctx) => {
     },
     process.env.JWT_SECRET
   )
-  ctx.body = pick(user, ['_id', 'firstName', 'lastName', 'email'])
+  ctx.body = pick(user, ['_id', 'email'])
   ctx.session = { jwt: userJwt }
   ctx.status = 201
 }
@@ -41,7 +39,7 @@ export const login = async (ctx) => {
     process.env.JWT_SECRET
   )
   ctx.session = { jwt: userJwt }
-  ctx.body = pick(user, ['_id', 'firstName', 'lastName', 'email'])
+  ctx.body = pick(user, ['_id', 'email'])
 }
 
 export const logout = async (ctx) => {

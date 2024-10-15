@@ -3,11 +3,11 @@ import uniqueValidator from 'mongoose-unique-validator'
 import bcrypt from 'bcrypt'
 
 export interface IUser {
-  firstName: string
-  lastName: string
+  firstName?: string
+  lastName?: string
   email: string
   password: string
-  image: string
+  image?: string
 }
 
 // Put all user instance methods in this interface:
@@ -25,13 +25,11 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
     firstName: {
       type: String,
       trim: true,
-      required: true,
       max: 32
     },
     lastName: {
       type: String,
       trim: true,
-      required: true,
       max: 32
     },
     email: {
