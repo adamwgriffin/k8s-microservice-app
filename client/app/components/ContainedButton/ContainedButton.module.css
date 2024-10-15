@@ -1,0 +1,22 @@
+.containedButton {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.3) 0rem .0625rem .25rem -0.0625rem;
+  border-radius: .375rem;
+  height: 2.5rem;
+  padding: 0 .8rem;
+  background: gray;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+}
+
+.containedButton:hover {
+  background: rgb(141, 141, 141);
+}
+
+.containedButton.highlighted {
+  background: rgba(4, 87, 175, 0.24);
+}

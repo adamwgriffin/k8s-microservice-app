@@ -1,21 +1,17 @@
-'use client'
-
-import { useState } from 'react'
-import { FormEvent } from 'react'
+import type { CurrentUserResponse } from '../types'
+import buildClient from '../lib/build_client'
+import Header from './components/header'
 import styles from './page.module.css'
 
-export default function Home() {
-  const [user, setUser] = useState<{ name: string }>()
-
-  const onSubmit = async (event: FormEvent) => {
-    event.preventDefault()
-    const res = await fetch('/api/users/currentuser')
-    const data = await res.json()
-    setUser(data)
-  }
+export default async function Home() {
+  const client = buildClient()
+  const { data } = await client.get<CurrentUserResponse>(
+    '/api/users/current_user'
+  )
 
   return (
-    <div className={styles.page}>
+    <>
+      <Header currentUser={data.currentUser} />
       <main className={styles.main}>
         <h1>Testing</h1>
         <h2>NEXT_PUBLIC enviroment variable added to build:</h2>
@@ -30,11 +26,12 @@ export default function Home() {
           <li>NEXT_PUBLIC_LOCALE: {process.env.NEXT_PUBLIC_LOCALE}</li>
           <li>NEXT_PUBLIC_CURRENCY: {process.env.NEXT_PUBLIC_CURRENCY}</li>
         </ul>
-        <form onSubmit={onSubmit}>
-          <button className='btn btn-primary'>Test Endpoint</button>
-        </form>
-        <p>Current User: {user?.name}</p>
+        {data.currentUser ? (
+          <p>Current User: {data.currentUser.email}</p>
+        ) : (
+          <p>Not logged in</p>
+        )}
       </main>
-    </div>
+    </>
   )
 }
