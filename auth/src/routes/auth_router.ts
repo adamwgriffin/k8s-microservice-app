@@ -6,7 +6,7 @@ import { addCurrentUser } from '../middleware/current_user_middleware'
 
 export default new Router()
   // not using validation middleware for register because it seems that Mongoose's own validation works just as well
-  .post('/register', register)
+  .post('/register', runValidation(userLoginValidator), register)
   .post('/login', runValidation(userLoginValidator), login)
   .post('/logout', logout)
   .get('/current_user', addCurrentUser, currentUser)
