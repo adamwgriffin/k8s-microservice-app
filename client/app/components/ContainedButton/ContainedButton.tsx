@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import type { MouseEventHandler, ReactNode } from 'react'
 import styles from './ContainedButton.module.css'
 
 export interface ContainedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
