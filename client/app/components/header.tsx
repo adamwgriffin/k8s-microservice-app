@@ -12,8 +12,10 @@ const Header: React.FC<HeaderProps> = ({ currentUser = null }) => {
     <header className={styles.header}>
       <div className={styles.logo}>🐲</div>
       <nav className={styles.links}>
+        <Link href='/about'>About</Link>
         {!currentUser && <Link href='/register'>Register</Link>}
         {!currentUser && <Link href='/login'>Login</Link>}
+        {currentUser && <Link href='/admin'>Admin</Link>}
         {currentUser && <Logout />}
       </nav>
     </header>
