@@ -4,5 +4,5 @@ export type CurrentUser = {
 }
 
 export type CurrentUserResponse = {
-  currentUser: CurrentUser
+  currentUser: CurrentUser | null
 }

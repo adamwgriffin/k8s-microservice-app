@@ -4,7 +4,7 @@ import Logout from './logout'
 import styles from './header.module.css'
 
 export type HeaderProps = {
-  currentUser: CurrentUser
+  currentUser: CurrentUser | null
 }
 
 const Header: React.FC<HeaderProps> = ({ currentUser = null }) => {
