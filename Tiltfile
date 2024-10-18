@@ -39,6 +39,8 @@ helm_resource(
   'ingress-nginx-repo/ingress-nginx',
   release_name='ingress-nginx',
   namespace='ingress-nginx',
+  # Ingress Nginx runs on port 80 by default but the client dev server's default port is 3000. Setting this just allows
+  # things to work correctly when the client needs to do things like redirect the request from the backend.
   port_forwards=['3000:80'],
   resource_deps=['ingress-nginx-repo', 'client-depl']
 )
