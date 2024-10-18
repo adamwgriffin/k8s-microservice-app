@@ -4,6 +4,7 @@ import type { CurrentUser } from '../../types'
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import axios from 'axios'
 import ContainedButton from '../components/ContainedButton/ContainedButton'
 import formStyles from '../styles/forms.module.css'
@@ -58,6 +59,8 @@ const Login: React.FC = () => {
           <ContainedButton>Login</ContainedButton>
         </div>
       </form>
+      {/* TODO: Add callcback param to register link*/}
+      <p>Don&apos;t have an account? <Link href='/register'>Login</Link></p>
     </div>
   )
 }
