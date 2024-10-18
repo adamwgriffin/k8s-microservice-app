@@ -2,12 +2,21 @@ import type { CurrentUserResponse } from '../types'
 import buildClient from '../lib/build_client'
 import Header from './components/header'
 import styles from './page.module.css'
+import { headers } from 'next/headers'
 
 export default async function Home() {
-  const client = buildClient()
-  const { data } = await client.get<CurrentUserResponse>(
-    '/api/users/current_user'
-  )
+  let data: CurrentUserResponse = { currentUser: null }
+
+  const client = buildClient(headers())
+
+  try {
+    const response = await client.get<CurrentUserResponse>(
+      '/api/users/current_user'
+    )
+    data = response.data
+  } catch (error) {
+    console.log(error)
+  }
 
   return (
     <>

@@ -15,7 +15,10 @@ export async function middleware(request: NextRequest) {
     // https://nextjs.org/docs/messages/middleware-relative-urls
     const apiUrl = request.nextUrl.clone()
     apiUrl.pathname = '/api/auth/current_user'
-    const response = await fetch(apiUrl)
+    // We have to pass the request headers because the include the session cookie we need
+    const response = await fetch(apiUrl, {
+      headers: Object.fromEntries(request.headers.entries())
+    })
     const data = (await response.json()) as CurrentUserResponse
     // console.log('Middleware, data:', data)
     if (!data.currentUser) {
