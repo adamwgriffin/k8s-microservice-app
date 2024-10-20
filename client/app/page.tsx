@@ -1,7 +1,7 @@
 export default async function Home() {
   return (
     <main>
-      <h1>Testing</h1>
+      <h1>Home</h1>
       <h2>NEXT_PUBLIC enviroment variable added to build:</h2>
       <ul>
         <li>
