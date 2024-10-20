@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import UserInfo from './UserInfo'
-import styles from './header.module.css'
+import styles from './Header.module.css'
 
 const Header: React.FC = () => {
   return (
