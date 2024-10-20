@@ -7,7 +7,8 @@ import axios from 'axios'
 import Logout from './Logout'
 
 const UserInfo: React.FC = () => {
-  const [currentUser, setCurrentUser] = useState<CurrentUserResponse>()
+  const [currentUser, setCurrentUser] =
+    useState<CurrentUserResponse['currentUser']>(null)
 
   // TODO: Look into a better solution. Getting the session from the server instead of the client doesn't work well
   // because the header uses this component in the layout and it being a client component makes it so that every page is
@@ -21,7 +22,7 @@ const UserInfo: React.FC = () => {
       const { data } = await axios.get<CurrentUserResponse>(
         '/api/users/current_user'
       )
-      setCurrentUser(data)
+      setCurrentUser(data.currentUser)
     }
     getSession()
   }, [])
