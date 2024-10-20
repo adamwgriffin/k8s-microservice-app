@@ -1,7 +1,7 @@
 'use client'
 
 import type { CurrentUser } from '../../types'
-import type { FormEvent } from 'react'
+import { FormEvent, useCallback } from 'react'
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
@@ -16,18 +16,26 @@ const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const onSubmit = async (event: FormEvent) => {
-    event.preventDefault()
-    try {
-      await axios.post<CurrentUser>('/api/users/login', {
-        email,
-        password
-      })
-      router.push(searchParams.get('callbackUrl') || '/')
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  const onSubmit = useCallback(
+    async (event: FormEvent) => {
+      event.preventDefault()
+      try {
+        await axios.post<CurrentUser>('/api/users/register', {
+          email,
+          password
+        })
+        router.push(searchParams.get('callbackUrl') || '/')
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    [email, password, router, searchParams]
+  )
+
+  const callbackUrl = searchParams.get('callbackUrl')
+  const queryString = callbackUrl
+    ? `?callbackUrl=${encodeURIComponent(callbackUrl)}`
+    : ''
 
   return (
     <>
@@ -63,9 +71,7 @@ const RegisterForm: React.FC = () => {
       <p>
         Already have an account?{' '}
         <Link
-          href={`/login?callbackUrl=${encodeURIComponent(
-            searchParams.get('callbackUrl') || ''
-          )}`}
+          href={`/login${queryString}`}
         >
           Login
         </Link>
