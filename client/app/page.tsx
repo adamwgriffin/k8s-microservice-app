@@ -1,8 +1,6 @@
-import styles from './page.module.css'
-
 export default async function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <h1>Testing</h1>
       <h2>NEXT_PUBLIC enviroment variable added to build:</h2>
       <ul>

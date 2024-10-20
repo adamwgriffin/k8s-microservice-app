@@ -5,7 +5,9 @@ import styles from './header.module.css'
 const Header: React.FC = () => {
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>🐲</div>
+      <div className={styles.logo}>
+        <Link href='/'>🐲</Link>
+      </div>
       <nav className={styles.links}>
         <Link href='/about'>About</Link>
         <UserInfo />

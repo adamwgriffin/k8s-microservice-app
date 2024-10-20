@@ -30,7 +30,7 @@ const LoginForm: React.FC = () => {
   }
 
   return (
-    <div className={styles.login}>
+    <>
       <form onSubmit={onSubmit}>
         <h1>Login</h1>
         <div className={formStyles.inputGroup}>
@@ -70,7 +70,7 @@ const LoginForm: React.FC = () => {
           Register
         </Link>
       </p>
-    </div>
+    </>
   )
 }
 

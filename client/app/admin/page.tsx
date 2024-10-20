@@ -1,9 +1,9 @@
 const Admin: React.FC = () => {
   return (
-    <div>
+    <main>
       <h1>Admin</h1>
       <p>This route requires auth.</p>
-    </div>
+    </main>
   )
 }
 

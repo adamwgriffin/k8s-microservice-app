@@ -9,11 +9,11 @@ const LoginFormFallback = () => <>placeholder</>
 
 const Login: React.FC = () => {
   return (
-    <>
+    <main>
       <Suspense fallback={<LoginFormFallback />}>
         <LoginForm />
       </Suspense>
-    </>
+    </main>
   )
 }
 
