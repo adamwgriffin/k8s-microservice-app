@@ -6,10 +6,27 @@ import { getCurrentUser } from '../../lib/auth'
 import Logout from './Logout'
 
 const UserInfo: React.FC = () => {
-  const currentUser = useQuery({
+  const {
+    isFetching,
+    data: currentUser,
+    error
+  } = useQuery({
     queryKey: ['currentUser'],
-    queryFn: () => getCurrentUser(),
+    queryFn: getCurrentUser
   })
+
+  if (isFetching) {
+    return <>Loading...</>
+  }
+
+  if (error) {
+    return (
+      <>
+        <Link href='/register'>Register</Link>
+        <Link href='/login'>Login</Link>
+      </>
+    )
+  }
 
   return (
     <>
