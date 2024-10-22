@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useQuery } from '@tanstack/react-query'
-import { getCurrentUser } from '../../lib/auth'
+import { getCurrentUserQueryOptions } from '../../lib/auth'
 import Logout from './Logout'
 
 const UserInfo: React.FC = () => {
@@ -10,10 +10,7 @@ const UserInfo: React.FC = () => {
     isFetching,
     data: currentUser,
     error
-  } = useQuery({
-    queryKey: ['currentUser'],
-    queryFn: getCurrentUser
-  })
+  } = useQuery(getCurrentUserQueryOptions)
 
   if (isFetching) {
     return <>Loading...</>

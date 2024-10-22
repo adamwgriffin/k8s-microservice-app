@@ -4,17 +4,14 @@ import {
   HydrationBoundary,
   QueryClient
 } from '@tanstack/react-query'
-import { getCurrentUser } from '../../lib/auth'
+import { getCurrentUserQueryOptions } from '../../lib/auth'
 import UserInfo from './UserInfo'
 import styles from './Header.module.css'
 
 const Header: React.FC = async () => {
   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery({
-    queryKey: ['currentUser'],
-    queryFn: getCurrentUser
-  })
+  await queryClient.prefetchQuery(getCurrentUserQueryOptions)
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
