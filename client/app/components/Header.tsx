@@ -9,6 +9,8 @@ import UserInfo from './UserInfo'
 import styles from './Header.module.css'
 
 const Header: React.FC = async () => {
+  // Explanation for using a new QueryClient rather than existing one:
+  // https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr#alternative-use-a-single-queryclient-for-prefetching
   const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery(getCurrentUserQueryOptions)
@@ -19,6 +21,7 @@ const Header: React.FC = async () => {
       </div>
       <nav className={styles.links}>
         <Link href='/about'>About</Link>
+        {/* HydrationBoundary is a Client Component, so hydration will happen there. */}
         <HydrationBoundary state={dehydrate(queryClient)}>
           <UserInfo />
         </HydrationBoundary>

@@ -1,5 +1,8 @@
 'use client'
 
+// Taken from React Query docs:
+// https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr#prefetching-and-dehydrating-data
+
 // Since QueryClientProvider relies on useContext under the hood, we have to put 'use client' on top
 import { QueryClientProvider } from '@tanstack/react-query'
 import { getQueryClient } from '../../lib/getQueryClient'

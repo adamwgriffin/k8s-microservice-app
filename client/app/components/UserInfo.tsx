@@ -6,6 +6,10 @@ import { getCurrentUserQueryOptions } from '../../lib/auth'
 import Logout from './Logout'
 
 const UserInfo: React.FC = () => {
+  // This useQuery could just as well happen in some deeper child to <UserInfo>, data will be available immediately
+  // either way. Note that we are using useQuery here instead of useSuspenseQuery. Because this data has already been
+  // prefetched, there is no need to ever suspend in the component itself. If we forget or remove the prefetch, this
+  // will instead fetch the data on the client, while using useSuspenseQuery would have had worse side effects.
   const {
     isFetching,
     data: currentUser,
