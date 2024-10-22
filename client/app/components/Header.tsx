@@ -1,8 +1,20 @@
 import Link from 'next/link'
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient
+} from '@tanstack/react-query'
+import { getCurrentUser } from '../../lib/auth'
 import UserInfo from './UserInfo'
 import styles from './Header.module.css'
 
-const Header: React.FC = () => {
+const Header: React.FC = async () => {
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery({
+    queryKey: ['currentUser'],
+    queryFn: getCurrentUser
+  })
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -10,7 +22,9 @@ const Header: React.FC = () => {
       </div>
       <nav className={styles.links}>
         <Link href='/about'>About</Link>
-        <UserInfo />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <UserInfo />
+        </HydrationBoundary>
       </nav>
     </header>
   )

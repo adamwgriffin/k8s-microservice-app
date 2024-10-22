@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import ReactQueryClientProvider from './providers/ReactQueryClientProvider'
 import MainLayout from './components/MainLayout'
 import Header from './components/Header'
 import PageContainer from './components/PageContainer'
@@ -29,10 +30,12 @@ export default function RootLayout({
   return (
     <html>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <MainLayout>
-          <Header />
-          <PageContainer>{children}</PageContainer>
-        </MainLayout>
+        <ReactQueryClientProvider>
+          <MainLayout>
+            <Header />
+            <PageContainer>{children}</PageContainer>
+          </MainLayout>
+        </ReactQueryClientProvider>
       </body>
     </html>
   )
