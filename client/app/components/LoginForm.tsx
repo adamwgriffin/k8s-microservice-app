@@ -50,6 +50,7 @@ const LoginForm: React.FC = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={formStyles.input}
+            autoComplete='off'
           />
         </div>
         <div className={formStyles.inputGroup}>
@@ -62,6 +63,7 @@ const LoginForm: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
             type='password'
             className={formStyles.input}
+            autoComplete='off'
           />
         </div>
         <div className={styles.footer}>
