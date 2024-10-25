@@ -13,8 +13,10 @@ app.proxy = true
 app.use(
   session(
     {
+      key: 'K8s-Microservice-App:Session',
       signed: false,
-      secure: !['development', 'test'].includes(process.env.NODE_ENV)
+      secure: !['development', 'test'].includes(process.env.NODE_ENV),
+      maxAge: 24 * 60 * 60 * 1000 // 1 day
     },
     app
   )

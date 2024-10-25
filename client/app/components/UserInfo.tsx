@@ -34,6 +34,7 @@ const UserInfo: React.FC = () => {
       {!currentUser && <Link href='/register'>Register</Link>}
       {!currentUser && <Link href='/login'>Login</Link>}
       {currentUser && <Link href='/admin'>Admin</Link>}
+      {currentUser && <Link href='/account'>Account</Link>}
       {currentUser && <Logout />}
     </>
   )
