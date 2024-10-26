@@ -2,13 +2,16 @@ import type { CurrentUser, CurrentUserResponse } from '../types'
 import { jwtVerify } from 'jose'
 import { queryOptions } from '@tanstack/react-query'
 
-export const ProtectedRoutes = [/^\/admin(\/.*)?$/, /^\/account(\/.*)?$/]
+export const ProtectedRoutes = Object.freeze([
+  /^\/admin(\/.*)?$/,
+  /^\/account(\/.*)?$/
+])
 
 export function isProtectedRoute(pathname: string) {
   return ProtectedRoutes.some((r) => r.test(pathname))
 }
 
-export type DecodedSession = {
+export type Session = {
   jwt: string
   _expire: number
   _maxAge: number
