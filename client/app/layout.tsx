@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import ReactQueryClientProvider from './providers/ReactQueryClientProvider'
+import { AppStoreProvider } from './providers/AppStoreProvider'
 import MainLayout from './components/MainLayout'
 import Header from './components/Header'
 import PageContainer from './components/PageContainer'
@@ -31,10 +32,12 @@ export default function RootLayout({
     <html>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ReactQueryClientProvider>
-          <MainLayout>
-            <Header />
-            <PageContainer>{children}</PageContainer>
-          </MainLayout>
+          <AppStoreProvider>
+            <MainLayout>
+              <Header />
+              <PageContainer>{children}</PageContainer>
+            </MainLayout>
+          </AppStoreProvider>
         </ReactQueryClientProvider>
       </body>
     </html>

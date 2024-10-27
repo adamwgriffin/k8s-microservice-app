@@ -1,11 +1,11 @@
 'use client'
 
-import type { CurrentUser } from '../../types'
-import { FormEvent, useCallback } from 'react'
+import { FormEvent, useCallback, useEffect } from 'react'
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import axios from 'axios'
+import { useRegister } from '../../lib/auth'
+import { useAppStore } from '../providers/AppStoreProvider'
 import ContainedButton from './ContainedButton/ContainedButton'
 import formStyles from '../styles/forms.module.css'
 import styles from './login.module.css'
@@ -15,22 +15,23 @@ const RegisterForm: React.FC = () => {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { mutate: register, status, error, data } = useRegister()
+  const setCurrentUser = useAppStore((state) => state.setCurrentUser)
 
   const onSubmit = useCallback(
-    async (event: FormEvent) => {
+    (event: FormEvent) => {
       event.preventDefault()
-      try {
-        await axios.post<CurrentUser>('/api/users/register', {
-          email,
-          password
-        })
-        router.push(searchParams.get('callbackUrl') || '/')
-      } catch (error) {
-        console.error(error)
-      }
+      register({ email, password })
     },
-    [email, password, router, searchParams]
+    [register, email, password]
   )
+
+  useEffect(() => {
+    if (status === 'success') {
+      setCurrentUser(data)
+      router.push(searchParams.get('callbackUrl') || '/')
+    }
+  }, [data, error, status, setCurrentUser, router, searchParams])
 
   const callbackUrl = searchParams.get('callbackUrl')
   const queryString = callbackUrl
@@ -72,12 +73,9 @@ const RegisterForm: React.FC = () => {
       </form>
       <p>
         Already have an account?{' '}
-        <Link
-          href={`/login${queryString}`}
-        >
-          Login
-        </Link>
+        <Link href={`/login${queryString}`}>Login</Link>
       </p>
+      {error && <p>{error.message} </p>}
     </>
   )
 }
