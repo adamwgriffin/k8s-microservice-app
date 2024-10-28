@@ -1,13 +1,15 @@
 'use client'
 
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 import { useLogout } from '../../lib/auth'
 import { useAppStore } from '../providers/AppStoreProvider'
+import { isProtectedRoute } from '../../lib/auth'
 
 const Logout: React.FC = () => {
   const router = useRouter()
+  const pathname = usePathname()
   const { mutate: logout, status } = useLogout()
   const setCurrentUser = useAppStore((state) => state.setCurrentUser)
 
@@ -22,9 +24,9 @@ const Logout: React.FC = () => {
   useEffect(() => {
     if (status === 'success') {
       setCurrentUser(null)
-      router.push('/')
+      if (isProtectedRoute(pathname)) router.push('/')
     }
-  }, [status, setCurrentUser, router])
+  }, [status, setCurrentUser, router, pathname])
 
   return (
     <Link href='/logout' onClick={handleLogout}>
