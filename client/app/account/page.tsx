@@ -1,10 +1,8 @@
-import { headers } from 'next/headers'
-import { CurrentUser } from '../../types'
+import { useAppStore } from '../providers/AppStoreProvider'
 
-export default async function Page() {
-  const currentUser = JSON.parse(
-    headers().get('X-Current-User') || ''
-  ) as CurrentUser
+export default function Page() {
+  const currentUser = useAppStore((state) => state.currentUser)
+
   return (
     <>
       <h1>Account</h1>
@@ -15,8 +13,8 @@ export default async function Page() {
         headers this way opts the page into dynamic rendering.
       </p>
       <h2>Logged In User</h2>
-      <p>ID: {currentUser.id}</p>
-      <p>Email: {currentUser.email}</p>
+      <p>ID: {currentUser?.id}</p>
+      <p>Email: {currentUser?.email}</p>
     </>
   )
 }

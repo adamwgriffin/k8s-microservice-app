@@ -1,5 +1,4 @@
-import type { CurrentUser, CurrentUserResponse } from '../types'
-import { jwtVerify } from 'jose'
+import type { CurrentUserResponse } from '../types'
 import { queryOptions, useQuery, useMutation } from '@tanstack/react-query'
 
 export type Session = {
@@ -21,8 +20,6 @@ export const ProtectedRoutes = Object.freeze([
 export function isProtectedRoute(pathname: string) {
   return ProtectedRoutes.some((r) => r.test(pathname))
 }
-
-const key = new TextEncoder().encode(process.env.JWT_SECRET)
 
 export async function getCurrentUser(): Promise<
   CurrentUserResponse['currentUser']
@@ -96,23 +93,4 @@ export async function logoutUser(): Promise<
 
 export function useLogout() {
   return useMutation({ mutationFn: logoutUser })
-}
-
-export function decodeSession(session: string): Session {
-  return JSON.parse(atob(session))
-}
-
-export async function decrypt(input: string) {
-  const { payload } = await jwtVerify<CurrentUser>(input, key)
-  return payload
-}
-
-export async function getCurrentUserFromSession(session: string | undefined) {
-  if (!session) return
-  try {
-    const decodedSession = decodeSession(session)
-    return await decrypt(decodedSession.jwt)
-  } catch (error) {
-    console.error('Error decrypting session:', error)
-  }
 }
