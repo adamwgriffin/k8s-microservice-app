@@ -17,9 +17,9 @@ spec:
           image: adamwgriffin/auth
           envFrom:
             - configMapRef:
-                name: auth-config
+                name: app-config
             - secretRef:
-                name: auth-secret
+                name: app-secret
 ---
 apiVersion: v1
 kind: Service

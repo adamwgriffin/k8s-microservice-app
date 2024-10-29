@@ -7,19 +7,12 @@ resources:
 namespace: dev
 
 configMapGenerator:
-  - name: auth-config
+  - name: app-config
     behavior: create
     envs:
-      - auth-config.env
-  - name: client-config
-    behavior: merge
-    envs:
-      - client-config.env
+      - app-config.env
 
 secretGenerator:
-  - name: client-secret
+  - name: app-secret
     envs:
-      - .env.client-secret
-  - name: auth-secret
-    envs:
-      - .env.auth-secret
+      - .env.app-secret

@@ -4,8 +4,6 @@ kind: Kustomization
 resources:
   - ../../base
 
-namespace: prod
-
 patches:
   - target:
       group: networking.k8s.io
@@ -15,7 +13,7 @@ patches:
     path: ingress-patch.yaml
 
 configMapGenerator:
-  - name: client-config
+  - name: app-config
     behavior: merge
     envs:
-      - client-config.env
+      - app-config.env

@@ -17,9 +17,9 @@ spec:
           image: adamwgriffin/client
           envFrom:
             - configMapRef:
-                name: client-config
+                name: app-config
             - secretRef:
-                name: client-secret
+                name: app-secret
 ---
 apiVersion: v1
 kind: Service

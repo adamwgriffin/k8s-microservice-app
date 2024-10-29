@@ -1,3 +1,3 @@
 - op: replace
   path: /spec/rules/0/host
-  value: awesomere.prod
+  value: k8s-microservice-app.com

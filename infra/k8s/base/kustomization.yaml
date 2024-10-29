@@ -8,6 +8,6 @@ resources:
   - auth-mongo-depl.yaml
 
 configMapGenerator:
-  - name: client-config
+  - name: app-config
     envs:
-      - client-config.env
+      - app-config.env

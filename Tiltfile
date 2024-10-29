@@ -1,11 +1,3 @@
-# Create a namespace for dev
-load(
-  "ext://namespace", 
-  "namespace_create",
-  "namespace_inject"
-)
-namespace_create('dev')
-
 k8s_yaml(kustomize('./infra/k8s/overlays/dev'))
 
 k8s_resource('auth-mongo-depl', port_forwards=27017)
