@@ -4,11 +4,9 @@ kind: Kustomization
 resources:
   - ../../base
 
-namespace: dev
-
 configMapGenerator:
   - name: app-config
-    behavior: create
+    behavior: merge
     envs:
       - app-config.env
 
