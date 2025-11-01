@@ -4,7 +4,7 @@ A simple example of a Microservice app using Kubernetes with Tilt and Kustomize 
 
 ## Setup
 
-Note: Typescript files may show errors in your editor since the `node_modules` directory is not intalled locally in the proeject. A basic way to fix this is to install the npm packages so that Typescript can find them. To do this install Yarn globally. You will want to be running it with Node.js 18. After installing the dependencies run `yarn install` inside of each service that is written in Typescript.
+Note: Typescript files may show errors in your editor since the `node_modules` directory is not intalled locally in the project. A basic way to fix this is to install the npm packages so that Typescript can find them. To do this install Yarn globally. You will want to be running it with Node.js 18. After installing the dependencies run `yarn install` inside of each service that is written in Typescript.
 
 Get Docker Desktop and make sure to turn on the Kubernetes in the settings for the app.
 
